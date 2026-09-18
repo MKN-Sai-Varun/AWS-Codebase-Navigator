@@ -1,16 +1,66 @@
-# React + Vite
+# Codebase Navigator
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+AI-powered GitHub repository exploration and codebase Q&A tool.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- GitHub repository analysis
+- File explorer
+- Source code viewer
+- Dependency graph
+- Natural-language codebase Q&A
+- Relevant-file evidence
+- Repository history
 
-## React Compiler
+## Frontend stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React + Vite
+- React Router
+- React Flow (`@xyflow/react`)
+- AWS Amplify (hosting)
+- API Gateway (backend)
 
-## Expanding the ESLint configuration
+## Environment
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Copy `.env.example` to `.env` and set your API to VITE_API_URL
+
+This must point at the deployed API Gateway stage. Never put AWS credentials or secrets in a `VITE_*` variable — it is bundled into the client and publicly visible.
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+## Production build
+
+```bash
+npm run build
+```
+
+## Deployment (AWS Amplify)
+
+1. Push this repository to GitHub.
+2. In the Amplify console, choose **New app → Host web app** and connect this GitHub repo/branch.
+3. Amplify auto-detects the Vite build; confirm the build settings are roughly:
+```yaml
+   version: 1
+   frontend:
+     phases:
+       preBuild:
+         commands:
+           - npm install
+       build:
+         commands:
+           - npm run build
+     artifacts:
+       baseDirectory: dist
+       files:
+         - '**/*'
+     cache:
+       paths:
+         - node_modules/**/*
+```
+4. Under **App settings → Environment variables**, add `VITE_API_URL` with your API Gateway URL.
+5. Save and deploy. Amplify builds and hosts the app on every push to the connected branch.

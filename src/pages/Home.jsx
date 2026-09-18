@@ -64,7 +64,7 @@ export default function Home() {
           <h1>Understand any codebase</h1>
           <p>
             Paste a public GitHub repository and explore its structure,
-            dependencies and behavior — then ask questions and get answers
+            dependencies and behavior, then ask questions and get answers
             grounded in the actual source.
           </p>
           <RepoInput onAnalyze={handleAnalyze} loading={loading} />
