@@ -590,6 +590,16 @@ button, input, textarea {
   background: var(--bg);
 }
 
+.graph-container .react-flow__controls button {
+  background: var(--panel);
+  border-color: var(--border-strong);
+  color: var(--accent-strong);
+}
+
+.graph-container .react-flow__controls button:hover {
+  background: var(--panel-raised);
+}
+
 /* ---------- question / answer ---------- */
 
 .qa-section {

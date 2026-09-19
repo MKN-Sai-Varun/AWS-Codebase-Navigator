@@ -27,9 +27,15 @@ export default function DependencyGraph({ graph, onNodeSelect }) {
         onNodeClick={(_, node) => onNodeSelect?.(node.id)}
         proOptions={{ hideAttribution: true }}
       >
-        <Background gap={20} color="#24304a" />
+        <Background gap={20} color="#3a4d75" />
         <Controls showInteractive={false} />
-        <MiniMap pannable zoomable style={{ background: "#101826" }} />
+        <MiniMap
+          pannable
+          zoomable
+          nodeColor="#7fd1ff"
+          maskColor="rgba(10, 14, 22, 0.72)"
+          style={{ background: "#101826", border: "1px solid #3a4d75" }}
+        />
       </ReactFlow>
     </div>
   );

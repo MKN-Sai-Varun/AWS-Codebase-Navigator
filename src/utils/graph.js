@@ -17,7 +17,12 @@ export function toReactFlowGraph(graph) {
       id: node.id,
       position: { x: column * COLUMN_WIDTH, y: row * ROW_HEIGHT },
       data: { label: node.label || node.id },
-      type: "default"
+      type: "default",
+      style: {
+        background: "#18263a",
+        border: "1px solid #7fd1ff",
+        color: "#e7ecf5"
+      }
     };
   });
 
@@ -26,7 +31,12 @@ export function toReactFlowGraph(graph) {
     source: edge.source,
     target: edge.target,
     label: edge.relation,
-    animated: false
+    animated: false,
+    style: { stroke: "#8aa8c7", strokeWidth: 1.5 },
+    labelStyle: { fill: "#e7ecf5", fontWeight: 600 },
+    labelBgStyle: { fill: "#101826", fillOpacity: 0.95 },
+    labelBgPadding: [4, 2],
+    labelBgBorderRadius: 2
   }));
 
   return { nodes: rfNodes, edges: rfEdges };
